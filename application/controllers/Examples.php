@@ -8,7 +8,6 @@ class Examples extends CI_Controller {
 
 		$this->load->database();
 		$this->load->helper('url');
-
 		$this->load->library('grocery_CRUD');
 	}
 
@@ -20,7 +19,6 @@ class Examples extends CI_Controller {
 	public function offices()
 	{
 		$output = $this->grocery_crud->render();
-
 		$this->_example_output($output);
 	}
 
