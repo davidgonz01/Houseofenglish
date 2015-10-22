@@ -1,10 +1,11 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Person extends CI_Controller {
+class person extends CI_Controller {
 
 	public function __construct()
 	{
+
 		parent::__construct();
 		$this->load->model('person_model','person');
 	}
@@ -12,7 +13,57 @@ class Person extends CI_Controller {
 	public function index()
 	{
 		$this->load->helper('url');
-		$this->load->view('v_person');
+		$this->load->view('v_cabecera');
+		$this->load->view('v_medio');
+ 
+  		  $this->load->view('v_final');
+  		//$this->load->view('funciona.php');
+
+	}
+
+
+
+	public function autocomplete()
+	{
+		$this->load->helper('url');
+	
+ 			$this->load->view('v_cabecera');
+  		  $this->load->view('autocomplete');
+  		   $this->load->view('v_final');
+  		//$this->load->view('funciona.php');
+
+	}
+
+	public function validaciones()
+	{
+		$this->load->helper('url');
+		
+ 
+  		  $this->load->view('validate2');
+  		//$this->load->view('funciona.php');
+
+	}
+
+	public function prueba_funcional()
+	{
+		$this->load->helper('url');
+		$this->load->view('v_cabecera');
+		$this->load->view('v_medio');
+ 
+  		  $this->load->view('v_final');
+  		//$this->load->view('funciona.php');
+
+	}
+
+	public function tablas()
+	{
+		$this->load->helper('url');
+		$this->load->view('v_cabecera');
+		$this->load->view('v_medio');
+ 
+  		  $this->load->view('v_final');
+  		//$this->load->view('funciona.php');
+
 	}
 
 	public function ajax_list()
@@ -55,11 +106,11 @@ class Person extends CI_Controller {
 	public function ajax_add()
 	{
 		$data = array(
-				'firstName' => $this->input->post('firstName'),
-				'lastName' => $this->input->post('lastName'),
-				'gender' => $this->input->post('gender'),
-				'address' => $this->input->post('address'),
-				'dob' => $this->input->post('dob'),
+				'firstName' => $this->input->post('firstName1'),
+				'lastName' => $this->input->post('lastName1'),
+				'gender' => $this->input->post('gender1'),
+				'address' => $this->input->post('address1'),
+				'dob' => $this->input->post('dob1'),
 			);
 		$insert = $this->person->save($data);
 		echo json_encode(array("status" => TRUE));
@@ -68,11 +119,11 @@ class Person extends CI_Controller {
 	public function ajax_update()
 	{
 		$data = array(
-				'firstName' => $this->input->post('firstName'),
-				'lastName' => $this->input->post('lastName'),
-				'gender' => $this->input->post('gender'),
-				'address' => $this->input->post('address'),
-				'dob' => $this->input->post('dob'),
+				'firstName' => $this->input->post('firstName1'),
+				'lastName' => $this->input->post('lastName1'),
+				'gender' => $this->input->post('gender1'),
+				'address' => $this->input->post('address1'),
+				'dob' => $this->input->post('dob1'),
 			);
 		$this->person->update(array('id' => $this->input->post('id')), $data);
 		echo json_encode(array("status" => TRUE));
