@@ -5,7 +5,7 @@ class person extends CI_Controller {
 
 	public function __construct()
 	{
-
+		
 		parent::__construct();
 		$this->load->model('person_model','person');
 	}
@@ -33,6 +33,13 @@ class person extends CI_Controller {
   		//$this->load->view('funciona.php');
 
 	}
+
+	 /**public function get_office(){
+		      $data=$this->person->get();        
+       			 echo json_encode($data);
+
+	}**/
+
 
 	public function validaciones()
 	{

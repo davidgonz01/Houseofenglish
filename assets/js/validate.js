@@ -38,7 +38,7 @@ $(document).ready(function () {
                          message: 'El password es requerido y no puede ser vacio'
                      },
                      stringLength: {
-                         min: 8,
+                         min: 7,
                          message: 'El password debe contener al menos 8 caracteres'
                      }
                  }
@@ -103,17 +103,14 @@ $(document).ready(function () {
         }
      
          }
-
-
-
     });
-
-
-
 });
 
-  function reset()
-    {
-      alert('prueba exitosa');
+ 
 
-      }
+//funcion para enviar notificaciones al usuario la libreria la descargas de http://ned.im/noty/
+//op: "error", "info" ,"success"
+function nota(op,msg,time){
+    if(time == undefined)time = 5000;
+    var n = noty({text:msg,maxVisible: 1,type:op,killer:true,timeout:time,layout: 'top'});
+}

@@ -90,8 +90,8 @@
      
                  <div class="form-group">
                             <div class="col-lg-9 col-lg-offset-3">
-                                <button type="submit" onclick="save()"  class="btn btn-success left">Registrarse</button>
-                                <button type="button" id="btnSave" onclick="save()" class="btn btn-primary">Save</button>
+                                <button type="submit"   class="btn btn-success left">Registrarse</button>
+                               
                             </div>
                         </div>
                     </form>
@@ -114,20 +114,5 @@
 
 
 
-  <script type="text/javascript">
-
-   
- 
-
-
-
-
-    function save()
-    {
-      alert('Error adding / update data');
-
-      }
-
-  </script>
 
      </body>

@@ -41,6 +41,17 @@ class prueba extends CI_Controller {
   		 
 	}
 
+		public function autocompletemenu()
+	{
+		$this->load->helper('url');
+	
+ 			$this->load->view('v_cabecera');
+  		  $this->load->view('autocomplete');
+  		   $this->load->view('v_final');
+  		//$this->load->view('funciona.php');
+
+	}
+
 
 	function autocomplete()
 	{

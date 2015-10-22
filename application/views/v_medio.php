@@ -21,7 +21,7 @@
                                           </div>
                                         </div>
                                         <div class="form-group col-md-6">
-                                          <label class="control-label col-md-3">Last Name</label>
+                                          <label class="control-label col-md-3">Last Name1</label>
                                           <div class="col-md-9">
                                             <input name="lastName1" placeholder="Last Name" class="form-control" type="text"  max="10" required />
                                           </div>

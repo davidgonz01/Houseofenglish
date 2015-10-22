@@ -12,6 +12,26 @@ class Person_model extends CI_Model {
 		parent::__construct();
 		$this->load->database();
 	}
+	 public function get() {
+  	  $office = $this->input->post('search');
+	  $this->db->select('Name, id_city');
+	  $this->db->from('city');
+	  $this->db->like('Name', $office);
+	  $query = $this->db->get();
+
+	  $office_array = array();
+	  foreach ($query->result() as $row) {
+	   $office_array[] = $row->Name;
+	  }
+	  $data = $query->result_array();
+
+	  return $data;
+	  
+    
+  }
+
+
+
 
 	private function _get_datatables_query()
 	{

@@ -89,8 +89,10 @@
                             <a href='<?php echo site_url('person/validaciones')?>'> <i class="fa fa-table fa-fw"></i> validaciones </a> 
                         </li>
                          <li>
-                            <a href='<?php echo site_url('person/autocomplete')?>'> autocomplete </a> 
+                            <a href='<?php echo site_url('prueba/autocompletemenu')?>'> autocomplete </a> 
                         </li>
+
+                        <li> <?php echo  "<a href='".  site_url("prueba/autocompletemenu")."'>Cuentas</a>"; ?></li>
                          <li>
                             <a href='<?php echo site_url('person/pruebas_funcionales')?>'> Pruebas_funcionales</a> 
                         </li>
