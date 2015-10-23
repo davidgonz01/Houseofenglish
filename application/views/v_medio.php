@@ -155,162 +155,51 @@
                     </div>
 
             </form>
-          
+                              <div class="panel panel-default">
+                        <div class="panel-heading">
+                            Modals
+                        </div>
+                        <!-- /.panel-heading -->
+                        <div class="panel-body">
+                            <!-- Button trigger modal -->
+                            <button class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">
+                                Launch Demo Modal
+                            </button>
+                            <!-- Modal -->
+                            <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                            <h4 class="modal-title" id="myModalLabel">Modal title</h4>
+                                        </div>
+                                        <div class="modal-body">
+                                            Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                            <button type="button" class="btn btn-primary">Save changes</button>
+                                        </div>
+                                    </div>
+                                    <!-- /.modal-content -->
+                                </div>
+                                <!-- /.modal-dialog -->
+                            </div>
+                            <!-- /.modal -->
+                        </div>
+                        <!-- .panel-body -->
+                    </div>
                                    
         
 <script src="<?php echo base_url('assets/js/jquery-1.9.1.js')?>"></script>
-  
+  <script src="<?php echo base_url('assets/js/medio.js')?>"></script>
   <script src="<?php echo base_url('assets/datatables/js/jquery.dataTables.min.js')?>"></script>
   <script src="<?php echo base_url('assets/datatables/js/dataTables.bootstrap.js')?>"></script>
 
-
-  <script type="text/javascript">
-
-    var save_method; //for save method string
-    var table;
-    $(document).ready(function() {
-      table = $('#table').DataTable({ 
-        
-        "processing": true, //Feature control the processing indicator.
-        "serverSide": true, //Feature control DataTables' server-side processing mode.
-        
-        // Load data for the table's content from an Ajax source
-        "ajax": {
-            "url": "<?php echo site_url('person/ajax_list')?>",
-            "type": "POST"
-        },
-
-        //Set column definition initialisation properties.
-        "columnDefs": [
-        { 
-          "targets": [ -1 ], //last column
-          "orderable": false, //set not orderable
-        },
-        ],
-
-      });
-    });
-
- 
+               <script src="<?php echo base_url('assets/js/noty.js')?>"></script>
 
 
-    function add_person()
-    {
-
-      
-      save_method = 'add';
-      $('#form')[0].reset(); // reset form on modals
-      $('#modal_form').modal('show'); // show bootstrap modal
-      $('.modal-title').text('Add Person'); // Set Title to Bootstrap modal title
-    }
-
-    function edit_person(id)
-    {
-      save_method = 'update';
-      $('#form')[0].reset(); // reset form on modals
-
-      //Ajax Load data from ajax
-      $.ajax({
-        url : "<?php echo site_url('person/ajax_edit/')?>/" + id,
-        type: "GET",
-        dataType: "JSON",
-        success: function(data)
-        {
-           
-            $('[name="id"]').val(data.id);
-            $('[name="firstName1"]').val(data.firstName);
-            $('[name="lastName1"]').val(data.lastName);
-            $('[name="gender1"]').val(data.gender);
-            $('[name="address1"]').val(data.address);
-            $('[name="dob1"]').val(data.dob);
-            
-            $('#modal_form').modal('show'); // show bootstrap modal when complete loaded
-            $('.modal-title').text('Edit Person'); // Set title to Bootstrap modal title
-            
-        },
-        error: function (jqXHR, textStatus, errorThrown)
-        {
-            alert('Error get data from ajax');
-        }
-    });
-    }
-
-    function reload_table()
-    {
-      table.ajax.reload(null,false); //reload datatable ajax 
-    }
-
-
-
-    function reset()
-    {
-      $('#form')[0].reset(); // reset form on modals
-
-      }
-
-    function save()
-    {
-
-       
-
-
-      var url;
-      if(save_method == 'add') 
-      {
-          url = "<?php echo site_url('person/ajax_add')?>";
-      }
-      else
-      {
-        url = "<?php echo site_url('person/ajax_update')?>";
-      }
-
-       // ajax adding data to database
-          $.ajax({
-            url : url,
-            type: "POST",
-            data: $('#form').serialize(),
-            dataType: "JSON",
-            success: function(data)
-            {
-               //if success close modal and reload ajax table
-               $('#modal_form').modal('hide');
-               reload_table();
-            },
-            error: function (jqXHR, textStatus, errorThrown)
-            {
-                alert('Error adding / update data');
-            }
-        });
-
-
-
-    }
-
-    function delete_person(id)
-    {
-      if(confirm('Are you sure delete this data?'))
-      {
-        // ajax delete data to database
-          $.ajax({
-            url : "<?php echo site_url('person/ajax_delete')?>/"+id,
-            type: "POST",
-            dataType: "JSON",
-            success: function(data)
-            {
-               //if success reload ajax table
-               $('#modal_form').modal('hide');
-               reload_table();
-            },
-            error: function (jqXHR, textStatus, errorThrown)
-            {
-                alert('Error adding / update data');
-            }
-        });
-         
-      }
-    }
-
-  </script>
+  
 
   
 

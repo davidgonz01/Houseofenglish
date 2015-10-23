@@ -3,24 +3,26 @@
   <head>
     <meta charset="utf-8">
 
-    <title>jQuery Validate</title>
+    <title>jQuery Validate 2</title>
 
       <meta name="viewport" content="width=device-width">
-      <script src="//oss.maxcdn.com/momentjs/2.8.2/moment.min.js"></script>
-   
-        <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet"></link>
-    <link href="//oss.maxcdn.com/jquery.bootstrapvalidator/0.5.2/css/bootstrapValidator.min.css" rel="stylesheet"></link>
-
+     
+       <link href="<?php echo base_url('bower_components/bootstrap/dist/css/bootstrap.min.css')?>" rel="stylesheet">
+     <!-- MetisMenu CSS http://startbootstrap.com/bootstrap-resources/#ui -->
+     <link href="<?php echo base_url('assets/css/bootstrapValidator.min.css')?>" rel="stylesheet">
+     
+  
 
   
     
 
   </head>
   <body>
+ <link href="<?php echo base_url('bower_components/font-awesome/css/font-awesome.min.css')?>" rel="stylesheet">
 
 
     
-    <form id="registrationForm" method="post" class="form-horizontal mitad" action="#">
+    <form id="registrationForm"  class="form-horizontal mitad" >
                 
                     <h2>Formulario de Registro</h2>
                         <div class="form-group">
@@ -40,14 +42,14 @@
                         <div class="form-group">
                             <label class="col-lg-3 control-label">Correo Electrónico</label>
                             <div class="col-lg-3">
-                                <input type="text" class="form-control" name="email" />
+                                <input type="text" class="form-control" name="email" id="email" />
                             </div>
                      </div>
      
                         <div class="form-group">
                             <label class="col-lg-3 control-label">Password</label>
                             <div class="col-lg-3">
-                                <input type="password" class="form-control" name="password" />
+                                <input type="password" class="form-control" id="password" name="password"/>
                             </div>
                         </div>
      
@@ -84,16 +86,12 @@
                         <div class="form-group">
                          <label class="col-lg-3 control-label">1Teléfono Celular</label>
                             <div class="col-lg-3">
-                                <input type="text" class="form-control" name="telefono_cel" />
+                                <input type="text" class="form-control" name="telefono_cel" required />
                             </div>
                      </div> 
      
-                 <div class="form-group">
-                            <div class="col-lg-9 col-lg-offset-3">
-                                <button type="submit"   class="btn btn-success left">Registrarse</button>
-                               
-                            </div>
-                        </div>
+               <button type="submit" class="btn btn-success btn-block">Login</button>
+
                     </form>
                      <div class="col-xs-6">
                       <p class="lead">Datos Para Ingresar <span class="text-success"></span></p>
@@ -103,14 +101,17 @@
                       </ul>
                   </div>
 
-                        <script src="//oss.maxcdn.com/jquery/1.11.1/jquery.min.js"></script>
-    <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
-    <script src="//oss.maxcdn.com/jquery.bootstrapvalidator/0.5.3/js/bootstrapValidator.min.js"></script>
-     
+                      <script src="<?php echo base_url('assets/js/jquery-1.9.1.js')?>"></script>
     
-        <script src="<?php echo base_url('assets/js/validate.js')?>"></script>
+            <script src="<?php echo base_url('assets/js/validate.js')?>"></script>
+             <script src="<?php echo base_url('assets/js/bootstrap.min.js')?>"></script>
 
+              <script src="<?php echo base_url('assets/js/bootstrapValidator.min.js')?>"></script>
 
+            
+               <script src="<?php echo base_url('assets/js/noty.js')?>"></script>
+
+   
 
 
 
