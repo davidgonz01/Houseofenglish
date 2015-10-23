@@ -1,7 +1,7 @@
 $(document).ready(function () {
 
-
-       $('#registrationForm').bootstrapValidator({
+       fl = $('#registrationForm');
+       fl.bootstrapValidator({ 
          feedbackIcons: {
              valid: 'glyphicon glyphicon-ok',
              invalid: 'glyphicon glyphicon-remove',
@@ -81,29 +81,34 @@ $(document).ready(function () {
                          message: 'El teléfono solo puede contener números'
                      }
                  }
-             },
+             }
 
-              submitHandler: function(validator, form, submitButton) {
+         },
+
+          submitHandler: function(validator, form, submitButton) {
             //AQUI PODEMOS ENVIAR LOS DATOS DEL FORMULARIO MEDIANTE AJAX A NUESTRO SERVIDOR Y RECIBIR UNA RESPUESTA...
             //PARA ESTE EJEMPLO NO SE UTILIZA AJAX...SI QUEIRES IMPLEMENTARLO PUEDES USAR LOS METODOS POST O GET DE JQUERY PARA ENVIAR EL FORMULARIO
- 
+       
             //Tomamos el valor de los cuadros de texto con JQEURY
-            usuario = $('#usuario').val();
+            usuario = $('#email').val();
             pass = $('#password').val();
  
             //Comparamos si el usuario y la contraseña son correctos
             if(usuario == 'user2550@netosolis.com' && pass == 'pass990'){
-                location.href = "principal.html"
+                 alert('Error get data from ajax - ok ');
+                location.href = "http://localhost/startbootstrap/index.php"
             }
             //Si no son correctos mandamos un mensage de error...y limpiamos el cuandro de texto del password
            else{
+                 alert('Error get data from ajax - error ');
                 nota("error","Los Datos Son Incorrectos.");
                  $('#password').val('');
             }
         }
-     
-         }
+
+
     });
+
 });
 
  
