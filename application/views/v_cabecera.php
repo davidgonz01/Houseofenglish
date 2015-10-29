@@ -98,6 +98,9 @@
                             <a href="tables.html"><i class="fa fa-table fa-fw"></i> Tables</a>
                         </li>
                         <li>
+                            <a href='<?php echo site_url('ciudades/index')?>'> <i class="fa fa-table fa-fw"></i> Select </a> 
+                        </li>
+                        <li>
                             <a href='<?php echo site_url('person/validaciones')?>'> <i class="fa fa-table fa-fw"></i> validaciones </a> 
                         </li>
                          <li>
