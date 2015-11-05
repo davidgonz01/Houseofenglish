@@ -5,6 +5,8 @@ class descuentos_model extends CI_Model {
 
 	var $table = 'descuentos';
 
+	
+
 	//var $vista = "SELECT d.id_descuento, p.nombre, d.concepto_detalle,d.precio_unitario, d.cantidad_hs, d.sub_total_descuento, d.fecha_detalle, e.descripcion FROM descuentos AS d, profesores AS p, estado AS e WHERE p.id_profesor = d.id_profesor AND e.id_estado = d.id_estado";
 
 	var $table1 =  'SELECT d.id_descuento, p.nombre, d.concepto_detalle,d.precio_unitario, d.cantidad_hs, d.sub_total_descuento, d.fecha_detalle, e.descripcion FROM descuentos AS d, profesores AS p, estado AS e WHERE p.id_profesor = d.id_profesor AND e.id_estado = d.id_estado';
@@ -56,20 +58,41 @@ class descuentos_model extends CI_Model {
 
 	function get_datatables()
 	{
-		$this->_get_datatables_query();
-		if($_POST['length'] != -1)
-		$this->db->limit($_POST['length'], $_POST['start']);
+		
+		if(isset($_GET['idtest'])){
+            $office = $_GET['idtest'];
+        }else{
+            $office= 70;
+        }
+
+		
+
+			
+			
+		
 
 
+		$id2 = $office; 
+           try{
 
-		$query = $this->db->get();
 
-//$vista = "SELECT d.id_descuento, p.nombre, d.concepto_detalle,d.precio_unitario, d.cantidad_hs, d.sub_total_descuento, d.fecha_detalle, e.descripcion FROM descuentos AS d, profesores AS p, estado AS e WHERE p.id_profesor = d.id_profesor AND e.id_estado = d.id_estado";
+		
+		$id_descuento = $id2;
 
-		// $query2 = $this->db->query($vista);
-
+		//$query =  $this->db->query('SELECT d.id_descuento, p.nombre, d.concepto_detalle,d.precio_unitario, d.cantidad_hs, d.sub_total_descuento, d.fecha_detalle, e.descripcion FROM descuentos AS d, profesores AS p, estado AS e WHERE p.id_profesor = d.id_profesor AND e.id_estado = d.id_estado');
+		$query =  $this->db->query("SELECT d.id_descuento, p.nombre, d.concepto_detalle,d.precio_unitario, d.cantidad_hs, d.sub_total_descuento, d.fecha_detalle, e.descripcion FROM descuentos AS d, profesores AS p, estado AS e WHERE p.id_profesor = d.id_profesor AND e.id_estado = d.id_estado and d.id_profesor = '$id_descuento' ");
+		
 		return $query->result();
+
+
+		 }catch ( Exception $e )
+            {
+            $this->load->view('welcome_message');
+              // show_error($e);
+            }
 	}
+
+
 
 	function count_filtered()
 	{
@@ -89,9 +112,41 @@ class descuentos_model extends CI_Model {
 		$this->db->from($this->table);
 		$this->db->where('id_descuento',$id);
 		$query = $this->db->get();
+		
 
 		return $query->row();
 	}
+
+
+
+
+	
+
+	public function get_datatables2($data2)
+	{
+		
+	
+           try{
+
+
+		
+		
+
+		//$query =  $this->db->query('SELECT d.id_descuento, p.nombre, d.concepto_detalle,d.precio_unitario, d.cantidad_hs, d.sub_total_descuento, d.fecha_detalle, e.descripcion FROM descuentos AS d, profesores AS p, estado AS e WHERE p.id_profesor = d.id_profesor AND e.id_estado = d.id_estado');
+		$query =  $this->db->query("SELECT d.id_descuento, p.nombre, d.concepto_detalle,d.precio_unitario, d.cantidad_hs, d.sub_total_descuento, d.fecha_detalle, e.descripcion FROM descuentos AS d, profesores AS p, estado AS e WHERE p.id_profesor = d.id_profesor AND e.id_estado = d.id_estado and d.id_profesor = '$data2' ");
+		
+		return $query->result();
+
+
+		 }catch ( Exception $e )
+            {
+            $this->load->view('welcome_message');
+              // show_error($e);
+            }
+	}
+
+
+
 
 	public function save($data)
 	{
@@ -110,6 +165,44 @@ class descuentos_model extends CI_Model {
 		$this->db->where('id_descuento', $id);
 		$this->db->delete($this->table);
 	}
+
+	 public function get() {
+
+  	  $office = $this->input->post('search');
+	  $this->db->select('Name, id_city');
+	  $this->db->from('city');
+	  $this->db->like('Name', $office);
+	  $query = $this->db->get();
+
+	  $office_array = array();
+	  foreach ($query->result() as $row) {
+	   $office_array[] = $row->Name;
+	  }
+	  $data = $query->result_array();
+
+	  return $data;
+	  
+    
+  }
+
+   public function get_profesor() {
+
+  	  $office = $this->input->post('search');
+	  $this->db->select('nombre, id_profesor');
+	  $this->db->from('profesores');
+	  $this->db->like('nombre', $office);
+	  $query = $this->db->get();
+
+	  $office_array = array();
+	  foreach ($query->result() as $row) {
+	   $office_array[] = $row->nombre;
+	  }
+	  $data = $query->result_array();
+
+	  return $data;
+	  
+    
+  }
 
 
 }

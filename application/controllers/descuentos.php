@@ -104,7 +104,7 @@ class descuentos extends CI_Controller {
 	{
 		$this->load->helper('url');
 		$this->load->view('v_cabecera');
-		$this->load->view('v_descuentos');
+		$this->load->view('v_descuentos_profesor');
 
   		  $this->load->view('v_final.php'); 
   		 // $this->descuentos();
@@ -119,13 +119,13 @@ class descuentos extends CI_Controller {
 			$no++;
 			$row = array();
 	//id_descuento 	 	concepto_detalle 	precio_unitario 	cantidad_hs 	sub_total_descuento 	fecha_detalle //id_estado
-			$row[] = $descuentos->id_profesor;
+			$row[] = $descuentos->nombre;
 			$row[] = $descuentos->concepto_detalle;
 			$row[] = $descuentos->precio_unitario;
 			$row[] = $descuentos->cantidad_hs;
 			$row[] = $descuentos->sub_total_descuento;
 			$row[] = $descuentos->fecha_detalle;
-			$row[] = $descuentos->id_estado;
+			$row[] = $descuentos->descripcion;
 
 			//add html for action
 			$row[] = '<a class="btn btn-sm btn-primary" href="javascript:void()" title="Edit" onclick="edit_descuentos('."'".$descuentos->id_descuento."'".')"><i class="glyphicon glyphicon-pencil"></i> Edit</a>
@@ -144,10 +144,97 @@ class descuentos extends CI_Controller {
 		echo json_encode($output);
 	}
 
+	public function ajax_list2($id)
+	{
+		
+
+		 if(isset($id)){
+            $data2 =$id;
+        }else{
+            $data2 = "24";
+        }
+			
+
+		$list = $this->descuentos->get_datatables2($data2);
+		$data = array();
+		$no = $_POST['start'];
+		foreach ($list as $descuentos) {
+			$no++;
+			$row = array();
+	//id_descuento 	 	concepto_detalle 	precio_unitario 	cantidad_hs 	sub_total_descuento 	fecha_detalle //id_estado
+			$row[] = $descuentos->nombre;
+			$row[] = $descuentos->concepto_detalle;
+			$row[] = $descuentos->precio_unitario;
+			$row[] = $descuentos->cantidad_hs;
+			$row[] = $descuentos->sub_total_descuento;
+			$row[] = $descuentos->fecha_detalle;
+			$row[] = $descuentos->descripcion;
+
+			//add html for action
+			$row[] = '<a class="btn btn-sm btn-primary" href="javascript:void()" title="Edit" onclick="edit_descuentos('."'".$descuentos->id_descuento."'".')"><i class="glyphicon glyphicon-pencil"></i> Edit</a>
+				  <a class="btn btn-sm btn-danger" href="javascript:void()" title="Hapus" onclick="delete_descuentos('."'".$descuentos->id_descuento."'".')"><i class="glyphicon glyphicon-trash"></i> Delete</a>';
+		
+			$data[] = $row;
+		}
+
+		$output = array(
+						"draw" => $_POST['draw'],
+						"recordsTotal" => $this->descuentos->count_all(),
+						"recordsFiltered" => $this->descuentos->count_filtered(),
+						"data" => $data,
+				);
+		//output to json format
+		echo json_encode($output);
+	}
+
+
+
 	public function ajax_edit($id)
 	{
 		$data = $this->descuentos->get_by_id($id);
 		echo json_encode($data);
+	}
+
+
+	public function recarga_de_tabla($id)
+	{
+
+	
+
+		$list = $this->descuentos->get_datatables2($id);
+		$data = array();
+		$no = $_POST['start'];
+		foreach ($list as $descuentos) {
+			$no++;
+			$row = array();
+	//id_descuento 	 	concepto_detalle 	precio_unitario 	cantidad_hs 	sub_total_descuento 	fecha_detalle //id_estado
+			$row[] = $descuentos->nombre;
+			$row[] = $descuentos->concepto_detalle;
+			$row[] = $descuentos->precio_unitario;
+			$row[] = $descuentos->cantidad_hs;
+			$row[] = $descuentos->sub_total_descuento;
+			$row[] = $descuentos->fecha_detalle;
+			$row[] = $descuentos->descripcion;
+
+			//add html for action
+			$row[] = '<a class="btn btn-sm btn-primary" href="javascript:void()" title="Edit" onclick="edit_descuentos('."'".$descuentos->id_descuento."'".')"><i class="glyphicon glyphicon-pencil"></i> Edit</a>
+				  <a class="btn btn-sm btn-danger" href="javascript:void()" title="Hapus" onclick="delete_descuentos('."'".$descuentos->id_descuento."'".')"><i class="glyphicon glyphicon-trash"></i> Delete</a>';
+		
+			$data[] = $row;
+		}
+
+		$output = array(
+						"draw" => $_POST['draw'],
+						"recordsTotal" => $this->descuentos->count_all(),
+						"recordsFiltered" => $this->descuentos->count_filtered(),
+						"data" => $data,
+				);
+		//output to json format
+		echo json_encode($output);
+
+
+
+		
 	}
 
 	public function ajax_add()
@@ -188,8 +275,27 @@ class descuentos extends CI_Controller {
 		echo json_encode(array("status" => TRUE));
 	}
 
-        
+     public function get_office(){
+		      $data=$this->descuentos->get();        
+       			 echo json_encode($data);
+
+	}
+
+	public function get_profesores(){
+		      $data=$this->descuentos->get_profesor();        
+       			 echo json_encode($data);
+
+	}
  
+
+	
+
+	public function get_profesores2($id)
+	{
+		$data = $this->descuentos->get_by_id2($id);
+		echo json_encode($data);
+	}
+
    
 }
 

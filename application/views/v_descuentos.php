@@ -1,3 +1,72 @@
+<div class="row">
+            <div class="alert alert-block alert-success"></div>
+        </div>
+ <div class="row">
+                                                <div class="form-group col-md-6">
+                                          <label class="control-label col-md-3">Saldo </label>
+                                          <div class="col-md-9">
+                                            <input name="id_city1" placeholder="id city s" class="form-control" type="text"  required >
+                                          </div>
+                                        </div>
+                                             <div class="form-group col-md-6">
+                                          <label class="control-label col-md-3">Saldo1 </label>
+                                          <div class="col-md-9">
+                                            <input name="Name1" placeholder="Nombre" class="form-control" type="text"  required >
+                                          </div>
+                                          </div>
+
+                                              <div class="form-group col-md-6">
+                                         <input type="text" name="idtest" value='<?php $name ?>'  />
+                                          <div class="col-md-9">
+                                            <input name="id_profesora" placeholder="id profesor" value="70" class="form-control" type="text"  required >
+                                          </div>
+                                        </div>
+        </div>
+        <div class="row">
+            <!-- Nav tabs -->
+            <ul class="nav nav-tabs">
+                <li class="active"><a href="#tab-demo1" data-toggle="tab">Demo #1</a></li>
+                
+                <li><a href="#tab-demo3" data-toggle="tab">Demo #3</a></li>
+                <li><a href="#tab-demo4" data-toggle="tab">Demo #4</a></li>
+               
+            </ul>
+            <!-- Tab panes -->
+            <div class="tab-content">
+                <div class="tab-pane" id="tab-demo3">
+                    <h3>Demo #3</h3>
+                    <div class="well col-md-5">
+                       <h2>Typehead.js8888888</h2>
+                                    <br>
+                                    <div id="remote">
+                                        <input type="text" class="form-control typeahead" name="office">
+                                    </div>
+                    </div>
+                    <div class="col-md-7">
+                     
+                    </div>
+                </div>
+                <div class="tab-pane" id="tab-demo4">
+                    <h3>Demo #4</h3>
+                    <div class="well col-md-5">
+                        <input id="demo4" type="text" class="col-md-12 form-control" placeholder="Search cities..." autocomplete="off" />
+                    </div>
+                    <div class="col-md-7">
+                        <pre class="prettyprint">
+
+                                $('#demo4').typeahead({
+                                    ajax: '/cities/list'
+                                });
+                        </pre>
+                    </div>
+                </div>
+           
+               
+
+
+            </div>
+        </div>
+
 <div class="row">   
                 <div class="col-lg-12">
                     <div class="panel panel-default">
@@ -12,7 +81,8 @@
                                     <form action="#" id="form"class="form-horizontal">
                                       <form>
 
-                                      <input type="hidden" value="" name="id_descuento">
+                                      <input type="hidden" value="70" name="id_descuento">
+                                       <input type="hidden" value="70" name="id_descuento88">
                                       
                                       <div class="form-body">
                                         <div class="form-group col-md-6">
@@ -67,7 +137,7 @@
                                          <div class="col-md-6 col-md-offset-3" >
                                               <div class="modal-footer">
                                                 <button type="button" id="btnSave" onclick="save()" class="btn btn-primary">Save</button>
-                                                <button type="button" class="btn btn-danger" onclick="reset()"  data-dismiss="modal">Cancel</button>
+                                                <button type="button" class="btn btn-danger" onclick="recargar_post()"  data-dismiss="modal">Cancel</button>
                                             
                                               </div>
                                         </div>
@@ -174,10 +244,13 @@
 
             </form>
           
-                                   
+    
+           <script src="<?php echo base_url('assets/js/jquery-1.9.1.js')?>"></script>
+     
+        <script src="<?php echo base_url('assets/bootstrap-typeahead.js')?>"></script>                                  
         
+ <script src="<?php echo base_url('assets/js/descuentos.js')?>"></script>
 
-  <script src="<?php echo base_url('assets/jquery/jquery-2.1.4.min.js')?>"></script>
   <script src="<?php echo base_url('assets/bootstrap/js/bootstrap.min.js')?>"></script>
   <script src="<?php echo base_url('assets/datatables/js/jquery.dataTables.min.js')?>"></script>
   <script src="<?php echo base_url('assets/datatables/js/dataTables.bootstrap.js')?>"></script>
@@ -185,152 +258,10 @@
 
   <script type="text/javascript">
 
-    var save_method; //for save method string
-    var table;
-    $(document).ready(function() {
-      table = $('#table').DataTable({ 
-        
-        "processing": true, //Feature control the processing indicator.
-        "serverSide": true, //Feature control DataTables' server-side processing mode.
-        
-        // Load data for the table's content from an Ajax source
-        "ajax": {
-            "url": "<?php echo site_url('descuentos/ajax_list')?>",
-            "type": "POST"
-        },
-
-        //Set column definition initialisation properties.
-        "columnDefs": [
-        { 
-          "targets": [ -1 ], //last column
-          "orderable": false, //set not orderable
-        },
-        ],
-
-      });
-    });
-
- 
+    
 
 
-    function add_descuentos()
-    {
-
-      
-      save_method = 'add';
-      $('#form')[0].reset(); // reset form on modals
-      $('#modal_form').modal('show'); // show bootstrap modal
-      $('.modal-title').text('Add descuentos'); // Set Title to Bootstrap modal title
-    }
-
-    function edit_descuentos(id)
-    {
-      save_method = 'update';
-      $('#form')[0].reset(); // reset form on modals
-
-      //Ajax Load data from ajax
-      $.ajax({
-        url : "<?php echo site_url('descuentos/ajax_edit/')?>/" + id,
-        type: "GET",
-        dataType: "JSON",
-        success: function(data)
-        {
-           
-            $('[name="id_descuento"]').val(data.id_descuento);
-            $('[name="id_profesor1"]').val(data.id_profesor);
-            $('[name="concepto_detalle1"]').val(data.concepto_detalle);
-            $('[name="precio_unitario1"]').val(data.precio_unitario);
-            $('[name="cantidad_hs1"]').val(data.cantidad_hs);
-             $('[name="sub_total_descuento1"]').val(data.sub_total_descuento);
-            $('[name="fecha_detalle1"]').val(data.fecha_detalle);
-             $('[name="id_estado1"]').val(data.id_estado);
-            
-            $('#modal_form').modal('show'); // show bootstrap modal when complete loaded
-            $('.modal-title').text('Edit descuentos'); // Set title to Bootstrap modal title
-            
-        },
-        error: function (jqXHR, textStatus, errorThrown)
-        {
-            alert('Error get data from ajax');
-        }
-    });
-    }
-
-    function reload_table()
-    {
-      table.ajax.reload(null,false); //reload datatable ajax 
-    }
-
-
-
-    function reset()
-    {
-      $('#form')[0].reset(); // reset form on modals
-
-      }
-
-    function save()
-    {
-
-       
-
-
-      var url;
-      if(save_method == 'add') 
-      {
-          url = "<?php echo site_url('descuentos/ajax_add')?>";
-      }
-      else
-      {
-        url = "<?php echo site_url('descuentos/ajax_update')?>";
-      }
-
-       // ajax adding data to database
-          $.ajax({
-            url : url,
-            type: "POST",
-            data: $('#form').serialize(),
-            dataType: "JSON",
-            success: function(data)
-            {
-               //if success close modal and reload ajax table
-               $('#modal_form').modal('hide');
-               reload_table();
-            },
-            error: function (jqXHR, textStatus, errorThrown)
-            {
-                alert('Error adding / update data');
-            }
-        });
-
-
-
-    }
-
-    function delete_descuentos(id)
-    {
-      if(confirm('Are you sure delete this data?'))
-      {
-        // ajax delete data to database
-          $.ajax({
-            url : "<?php echo site_url('descuentos/ajax_delete')?>/"+id,
-            type: "POST",
-            dataType: "JSON",
-            success: function(data)
-            {
-               //if success reload ajax table
-               $('#modal_form').modal('hide');
-               reload_table();
-            },
-            error: function (jqXHR, textStatus, errorThrown)
-            {
-                alert('Error adding / update data');
-            }
-        });
-         
-      }
-    }
-
+  
   </script>
 
   

@@ -9,7 +9,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Cabecera</title>
+    <title>House of English</title>
 
    
     
@@ -39,19 +39,6 @@
     
     <link href="<?php echo base_url('assets/datatables/css/dataTables.bootstrap.css')?>" rel="stylesheet">
 
-
-
-
-
-
-
-    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-    <!--[if lt IE 9]>
-        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
-    <![endif]-->
-
 </head>
 
 <body>
@@ -69,7 +56,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="index.html">SB Admin v2.0</a>
+                <a class="navbar-brand" href="index.html"> House of English </a>
             </div>
             <!-- /.navbar-header -->
             
@@ -82,20 +69,20 @@
                             <a href='<?php echo site_url('descuentos/index')?>'>Asistencias</a> 
                         </li>
                         <li>
-                            <a href="#"><i class="fa fa-bar-chart-o fa-fw"></i> Charts<span class="fa arrow"></span></a>
+                            <a href="#"><i class="fa fa-bar-chart-o fa-fw"></i> Alumnos <span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
                                 <li>
-                                    <a href="flot.html">Flot Charts</a>
+                                    <a href="flot.html">Nuevo Alumno</a>
                                 </li>
                                 <li>
-                                    <a href="morris.html">Morris.js Charts</a>
+                                    <a href="morris.html">Tipos de alumnos</a>
                                 </li>
                             </ul>
                             <!-- /.nav-second-level -->
                         </li>
 
                         <li>
-                            <a href="tables.html"><i class="fa fa-table fa-fw"></i> Tables</a>
+                            <a href="tables.html"><i class="fa fa-table fa-fw"></i> Tutores </a>
                         </li>
                         <li>
                             <a href='<?php echo site_url('ciudades/index')?>'> <i class="fa fa-table fa-fw"></i> Select </a> 
@@ -112,19 +99,19 @@
                             <a href='<?php echo site_url('person/pruebas_funcionales')?>'> Pruebas_funcionales</a> 
                         </li>
                         <li>
-                            <a href='<?php echo site_url('persons/tablas')?>'> tablas </a> 
+                            <a href='<?php echo site_url('persons/tablas')?>'> Examaenes </a> 
                         </li>
                         <li>
-                            <a href="forms.html"><i class="fa fa-edit fa-fw"></i> Forms</a>
+                            <a href="forms.html"><i class="fa fa-edit fa-fw"></i> Examenes </a>
                         </li>
                         <li>
-                            <a href="#"><i class="fa fa-wrench fa-fw"></i> UI Elements<span class="fa arrow"></span></a>
+                            <a href="#"><i class="fa fa-wrench fa-fw"></i> Examenes<span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
                                 <li>
-                                    <a href="panels-wells.html">Panels and Wells</a>
+                                    <a href="panels-wells.html">Particular </a>
                                 </li>
                                 <li>
-                                    <a href="buttons.html">Buttons</a>
+                                    <a href="buttons.html">Globales</a>
                                 </li>
                                 <li>
                                     <a href="notifications.html">Notifications</a>
